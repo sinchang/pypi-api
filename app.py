@@ -11,7 +11,8 @@ def hello_world():
 
 @app.route('/package/<name>')
 def search_package(name):
-  r = requests.get('https://pypi.org/project/' + name)
+  url = 'https://pypi.org/project/' + name
+  r = requests.get(url)
   soup = BeautifulSoup(r.text, 'html.parser')
 
   if (r.status_code != 200):
@@ -41,6 +42,7 @@ def search_package(name):
     }))
 
   ret['name'] = name
+  ret['url'] = url
   ret['release_history'] = release_history
   ret['desc'] = soup.find('p', class_='package-description__summary').text
   ret['license'] = meta[0].text.split(': ')[1]
