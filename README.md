@@ -2,7 +2,7 @@
 
 ## Find a package
 
-https://pypi-api.herokuapp.com/package/${package}
+https://pypi-api.herokuapp.com/package/{package}
 
 Example:
 
@@ -30,6 +30,30 @@ Response:
     "version": "19.7.1"
     }
   ],
+  "status": 1
+}
+```
+
+## Search packages
+
+https://pypi-api.herokuapp.com/search?q={package}&page={page}
+
+Example:
+
+https://pypi-api.herokuapp.com/search?q=requests&page=1
+
+Response:
+
+```
+{
+  "projects": [
+    {
+      "desc": "Python HTTP for Humans.", 
+      "latest_version": "2.18.4", 
+      "name": "requests", 
+      "url": "https://pypi.org/project/requests/"
+    }
+  ], 
   "status": 1
 }
 ```
