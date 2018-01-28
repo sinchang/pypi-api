@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'https://github.com/sinchang/pypi-api'
+    return '<a href="https://github.com/sinchang/pypi-api">Project GitHub</a>'
 
 @app.route('/package/<name>')
 def search_package(name):
@@ -16,7 +16,7 @@ def search_package(name):
   soup = BeautifulSoup(r.text, 'html.parser')
 
   if (r.status_code != 200):
-    return jsonify(message="出错了",status=-1)
+    return jsonify(message="Not Found",status=-1), 404
 
   ret = dict({})
 
