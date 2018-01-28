@@ -18,7 +18,7 @@ def search_package(name):
   if (r.status_code != 200):
     return jsonify(message="Not Found",status=-1), 404
 
-  ret = dict({})
+  ret = {}
 
   release_history = []
   maintainers = []
@@ -29,17 +29,17 @@ def search_package(name):
   for release in releases:
     version = release.find('a').text
     datetime = release.find('time').get('datetime')
-    release_history.append(dict({
+    release_history.append({
       'version': version,
       'date': datetime
-    }))
+    })
 
   for maintainer in maintainers_ele:
-    maintainers.append(dict({
+    maintainers.append({
       'profile_url': 'https://pypi.org/' + maintainer.get('href'),
       'name': maintainer.get('data-original-label'),
       'avatar': maintainer.find('img').get('src')
-    }))
+    })
 
   ret['name'] = name
   ret['url'] = url
